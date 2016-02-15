@@ -1,0 +1,21 @@
+<form action="<?=$this->url(array(
+	"controller"=>"contato",
+	"action"=>"create"
+	),null,true)?>" method="post">
+	
+	<table>
+		<tr>
+			<td>Nome:</td>
+			<td><input type="text" name="contato_nome" value=""/></td>
+		</tr>
+		<tr>
+			<td>Telefone:</td>
+			<td><input type="text" name="contato_telefone" value="" /></td>
+		</tr>
+		<tr>
+			<td>E-mail:</td>
+			<td><input type="text" name="contato_email" value="" /></td>
+		</tr>
+	</table>
+	<input class="bottom" type="submit" value="Enviar" />
+</form>

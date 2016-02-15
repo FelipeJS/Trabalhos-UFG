@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="utf-8" />
+    <title>Chat Compartilhado</title>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.peerjs.com/0/peer.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        var conexao;
+        var peer = new peer({ key: '' });
+    </script>
+
+    <h2 style="margin-left:30%;">Editor Compartilhado</h2>
+    
+    <p><label>Seu ID é:</label> 
+        <span id="pid"></span></p>
+
+    <p><label>Conectar ao Outro Ponto</label>
+        <input type="text" id="rid"/>
+    </p>
+    
+    <p><input type="button" value="conectar" id="conectar">Conectar</input></p>
+    <p><input type="button" value="desconectar" id="desconectar">Desconectar</input></p>
+
+    <div>
+        <div></div>
+    </div>
+
+    <textarea id="tTexto" rows="30" style="width:45%; margin-left:20%;"></textarea>
+</body>
+</html>

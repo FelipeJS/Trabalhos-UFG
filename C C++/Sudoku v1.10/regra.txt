@@ -1,0 +1,48 @@
+	 ___                             _      
+	| . \ ___  ___  _ _  ___  ___  _| | ___ 
+	|   // ._>/ . || '_><_> |<_-< / . |/ . \
+	|_\_\\___.\_. ||_|  <___|/__/ \___|\___/
+	          <___'                         
+	  _                
+	 | | ___  ___  ___ 
+	_| |/ . \/ . |/ . \
+	\__/\___/\_. |\___/
+        	 <___'
+
+	Eh um tipo de quebra-cabeca que se baseia na concordancia racional
+ 	de numeros. 
+	O Sudoku eh proveniente de um acronimo da expressao 
+	"Os numeros devem ser unicos" (em japones: Suuji wa dokushin ni kagiru).
+
+	O primeiro passatempo do genero foi publicado no final da decada de
+ 	1970, em Nova York, pela editora Dell Magazines.
+	Somente no ano de 2004, foi que fizeram a primeira publicacao do 
+	Sudoku na Inglaterra. 
+	A partir desse momento, as publicacoes foram se espalhando pelo 
+	mundo inteiro, tornando-se uma febre internacional.
+
+	Normalmente o jogo eh composto por uma grade 9X9 constituida de 
+	sub-grades 3X3 denominadas de regioes.
+	Certas celulas ja contem numeros, chamados de dados. 
+	A finalidade do jogo eh preencher as celulas vazias, com um numero 
+	em cada celula, 
+	de forma que cada coluna, linha e regiao contenham os numeros 1-9 
+	apenas uma vez. 
+	Ha tres formas de resolver o Sudoku: 
+	
+	-> Varredura; ocorre quando se varre a grade a procura de quadriculas 
+	que possam conter apenas um numero. 
+	-> Analise; eh a analise de cada dominio a procura das posicoes onde 
+	cada algarismo de 1 a 9 possa aparecer. 
+	-> Emparelhamento; eh a analise feita com "olho clinico" para 
+	identificar as situacoes que podem levar a simplificacao do problema. 
+
+	Alem dos metodos de resolucao o Sudoku apresenta tambem seu grau 
+	de dificuldade, 
+	variando conforme a capacidade de cada pessoa. 
+	O Sudoku eh aplicado em diversas escolas com o intuito de trabalhar
+ 	a capacidade do raciocinio logico dos estudantes, pois este requer 
+	bastante atencao e analise para obter uma solucao satisfatoria.
+
+
+

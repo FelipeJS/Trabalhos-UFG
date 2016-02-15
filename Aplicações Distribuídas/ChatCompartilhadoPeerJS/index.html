@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="utf-8" />
+    <title>Chat Compartilhado</title>
+    
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet" />
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://cdn.peerjs.com/0.3/peer.min.js"></script>
+    
+</head>
+<body>
+    <script type="text/javascript">
+        var conn;
+
+        //Create the Peer object
+        var peer = new Peer({ key: '2k988chdmgw4s4i' });
+
+        //Peer constructor
+        peer.on('open', function (id) {
+            $('#pid').text(id);
+        });
+
+        //Receive connection
+        peer.on('connection', connect);
+
+        function connect(c) {
+            conn = c;
+
+            $('#rid').val(conn.peer).prop('disabled', true);
+            $('#proBar').width('100%');
+
+            // Receive messages
+            conn.on('data', function(data){
+                $('tTexto').val($('tTexto').val()+data);
+            });
+        }
+
+        $(document).ready(function () {
+            $('connect').click(function () {
+                $('#proBar').width('50%');
+
+                //Start connection
+                var c = peer.connect($('#rid').val());
+
+                c.on('open', function () {
+                    connect(c);
+                });
+            });
+
+            $('#tTexto').keypress(function (e) {
+                var ev = e || window.event;
+                var asciiKey = ev.keyCode || ev.which;
+                text = String.fromCharCode(asciiKey);
+
+                // Send messages
+                conn.send(text);
+            });
+        });
+    </script>
+
+    <h2 style="margin-left:30%;">Editor Compartilhado</h2>
+
+    <p>
+        <label>Seu ID é:</label>
+        <span id="pid"></span>
+    </p>
+    
+    <p>
+        <label>Conectar ao Outro Ponto:</label>
+        <input type="text" id="rid" placeholder="Escreva um ID" />
+        <input type="button" value="Conectar" id="conectar"/>
+        <input type="button" value="Desconectar" id="desconectar" />
+    </p>
+
+    <div class="progress progress-striped active" style="width:25%;">
+        <div id="proBar" class="bar" style="width:0%;"></div>
+    </div>
+
+    <textarea id="tTexto" rows="30" style="width:45%; margin-left:20%;"></textarea>
+</body>
+</html>

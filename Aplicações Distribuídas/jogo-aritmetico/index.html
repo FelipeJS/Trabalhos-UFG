@@ -1,0 +1,73 @@
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+		var nome = '';
+        var iosocket = io.connect();
+        $(function(){
+
+            iosocket.on('connect', function () {
+                $('#incomingChatMessages').append($('<li>Connected</li>'));
+ 
+                iosocket.on('message', function(message) {
+                    $('#incomingChatMessages').append($('<li></li>').text(message));
+                });
+                iosocket.on('listar', function(jogadores) {
+                    jogadores.forEach( function(jogador) {
+	                    $('#incomingChatMessages').append($('<li></li>').text(jogador.nome+':  '+jogador.pontos));						
+					});
+                });
+                iosocket.on('disconnect', function() {
+                    $('#incomingChatMessages').append('<li>Disconnected</li>');
+                });
+            });
+ 
+            $('#outgoingChatMessage').keypress(function(event) {
+                if(event.which == 13) {
+                    event.preventDefault();
+                    iosocket.send($('#outgoingChatMessage').val());
+                    $('#incomingChatMessages').append($('<li></li>').text($('#outgoingChatMessage').val()));
+                    $('#outgoingChatMessage').val('');
+                }
+            });
+			$(window).load( function() {
+				$("#dMensagens").hide();
+			});
+			$('#tNome').keypress(function(event) {
+                if(event.which == 13) {
+                    event.preventDefault();
+					nome = $('#tNome').val();
+					$('#dLogin').hide();
+					$('#dMensagens').show();
+					iosocket.emit('login', nome );
+                }
+            });
+        });
+		function listar() {
+			iosocket.emit('listar', nome );
+		}
+		function iniciar() {
+			iosocket.emit('iniciar', nome );
+		}
+		function responder() {
+			var resposta = $('#outgoingChatMessage').val();
+			iosocket.emit('responder', 
+					{ "resposta":resposta,
+					  "nome":nome
+					}
+ );
+		}
+    </script>
+</head>
+<body>
+<div id="dLogin">
+Forne&ccedil;a seu nome: <input type="text" id="tNome">
+</div>
+<div id="dMensagens">
+Mensagens: <ul id="incomingChatMessages"></ul>
+<input type="text" id="outgoingChatMessage"><br/>
+A&ccedil;&otilde;es: <button onclick="listar()";>Listar jogadores</button><button onclick="iniciar()";>Iniciar o jogo</button><button onclick="responder()";>Responder</button>
+</div>
+</body>
+</html>
